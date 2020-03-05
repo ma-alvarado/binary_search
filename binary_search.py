@@ -17,7 +17,34 @@ def find_smallest_positive(xs):
     >>> find_smallest_positive([-3, -2, -1]) is None
     True
     '''
-
+    left = 0
+    right = len(xs) - 1
+    if xs == []:
+        return('None')
+    def go(left,right):
+        mid = (left + right) // 2
+        if left = right:
+            if xs[right] < 0:
+                return 'None'
+        if 0 < xs[mid]:
+            right = mid - 1
+        if 0 > xs[mid]:
+            left = mid + 1
+        if 0 == xs[mid]:
+            return mid + 1
+        if left == right and 0 != xs[mid]:
+            if right == 0:
+                if xs[right + 1] < 0:
+                    return 'None'
+                else:
+                    return mid - 1
+            else:
+                if xs[right] < 0:
+                    return 'None'
+                else:
+                    return mid
+        return go(left,right)
+    return go(left,right)
 
 def count_repeats(xs, x):
     '''
