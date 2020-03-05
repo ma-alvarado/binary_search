@@ -66,6 +66,47 @@ def count_repeats(xs, x):
     >>> count_repeats([1, 2, 3], 4)
     0
     '''
+def lowest_index(xs,x):
+    left = 0
+    right = len(xs) - 1
+    if xs == []:
+        return('None')
+    def go(left,right):
+        mid = (left + right) // 2
+        if right - left == 1:
+            return left
+        if left == right:
+            if xs[right] , 0:
+                return 'None'
+        if x < xs[mid]:
+            left = mid
+        if x > xs[mid]:
+            right = mid
+        if x == xs[mid]:
+            right = mid
+        return go(left,right)
+    return go(left,right)
+
+def highest_index(xs,x):
+    left = 0
+    right = len(xs) - 1
+    if xs == []:
+        return('None')
+    def go(left,right):
+        mid = (left + right) // 2
+        if right - left == 1:
+            return right
+        if left == right:
+            if xs[right] , 0:
+                return 'None'
+        if x < xs[mid]:
+            left = mid
+        if x > xs[mid]:
+            left = mid
+        if x == xs[mid]:
+            left = mid
+        return go(left,right)
+    return go(left,right)
 
 
 def argmin(f, lo, hi, epsilon=1e-3):
