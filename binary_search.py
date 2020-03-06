@@ -74,14 +74,17 @@ def lowest_index(xs,x):
     def go(left,right):
         mid = (left + right) // 2
         if right - left == 1:
-            return left
+            if xs[right] != x):
+                return right
+            else:
+                return left
         if left == right:
-            if xs[right] , 0:
+            if xs[right] < 0:
                 return 'None'
         if x < xs[mid]:
             left = mid
         if x > xs[mid]:
-            right = mid
+            left = mid
         if x == xs[mid]:
             right = mid
         return go(left,right)
@@ -95,12 +98,15 @@ def highest_index(xs,x):
     def go(left,right):
         mid = (left + right) // 2
         if right - left == 1:
-            return right
+            if (xs[mid] ==x):
+                return right
+            else:
+                return left
         if left == right:
-            if xs[right] , 0:
+            if xs[right] < 0:
                 return 'None'
         if x < xs[mid]:
-            left = mid
+            right = mid
         if x > xs[mid]:
             left = mid
         if x == xs[mid]:
