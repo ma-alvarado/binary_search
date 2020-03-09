@@ -89,7 +89,7 @@ def count_repeats(xs, x):
     if low == 0 and high == 0 or (low == high and xs[0] != x):
         return 0
    
-   if len(xs) == 1 and xs[0] == x:
+    if len(xs) == 1 and xs[0] == x:
         return 1
     else:
         return high - low + 1
