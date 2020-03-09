@@ -190,17 +190,17 @@ def argmin(f, lo, hi, epsilon=1e-3):
     right = hi
     def stop(left,right):
 
-        m1 = ((right - left) // 3) + left 
-        m2 = ((right - left) // 2) + left
+        m1 = ((right - left) / 3) + left 
+        m2 = ((right - left) / 2) + left
 
         if (right - left) < epsilon:
             return right
-
-        if f(m1) < f(m2):
-            return stop(left,m2)
       
         if f(m2) < f(m1):
             return stop(m1,right)
+
+        if f(m1) < f(m2):
+            return stop(left,m2)
     return stop(left,right)
 
 
