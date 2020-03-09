@@ -197,10 +197,10 @@ def argmin(f, lo, hi, epsilon=1e-3):
             return right
 
         if f(m1) < f(m2):
-            stop(left,m2)
+            return stop(left,m2)
       
         if f(m2) < f(m1):
-            stop(m1,right)
+            return stop(m1,right)
     return stop(left,right)
 
 
