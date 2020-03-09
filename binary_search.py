@@ -17,27 +17,37 @@ def find_smallest_positive(xs):
     >>> find_smallest_positive([-3, -2, -1]) is None
     True
     '''
-    left = 0
-    right = len(xs) - 1
+     left = 0
+    right = len(xs)-1
     if xs == []:
         return('None')
+    if len(xs) == 1:
+        if xs[0] > 0:
+            return 0
+    if len(xs) == 2:
+            if xs[left] > 0:
+                return 0
+            elif xs[right] > 0:
+                return 1
+            elif xs[left] <= 0 and xs[right] <= 0:
+                return 'None'
     def go(left,right):
-        mid = (left + right) // 2
-        if left = right:
+        mid = (left+right)//2
+        if left == right:
             if xs[right] < 0:
                 return 'None'
         if 0 < xs[mid]:
             right = mid - 1
         if 0 > xs[mid]:
             left = mid + 1
-        if 0 == xs[mid]:
+        if 0 ==xs[mid]:
             return mid + 1
         if left == right and 0 != xs[mid]:
             if right == 0:
-                if xs[right + 1] < 0:
+                if xs[right+1] < 0:
                     return 'None'
                 else:
-                    return mid - 1
+                    return mid 
             else:
                 if xs[right] < 0:
                     return 'None'
@@ -45,6 +55,8 @@ def find_smallest_positive(xs):
                     return mid
         return go(left,right)
     return go(left,right)
+
+
 
 def count_repeats(xs, x):
     '''
@@ -66,53 +78,86 @@ def count_repeats(xs, x):
     >>> count_repeats([1, 2, 3], 4)
     0
     '''
-def lowest_index(xs,x):
-    left = 0
-    right = len(xs) - 1
-    if xs == []:
-        return('None')
-    def go(left,right):
-        mid = (left + right) // 2
-        if right - left == 1:
-            if xs[right] != x):
-                return right
-            else:
-                return left
-        if left == right:
-            if xs[right] < 0:
-                return 'None'
-        if x < xs[mid]:
-            left = mid
-        if x > xs[mid]:
-            left = mid
-        if x == xs[mid]:
-            right = mid
-        return go(left,right)
-    return go(left,right)
+    low = lowest_index(xs,x)
+    high = highest_index(xs,x)
+
+    print(low)
+    print(high)
+
+    if low == 0 and high == 0 or (low == high and xs[0] != x):
+        return 0
+    if len(xs) == 1 and xs[0] == x:
+        return 1
+    else:
+        return high - low + 1
+
+
+    
 
 def highest_index(xs,x):
     left = 0
     right = len(xs) - 1
     if xs == []:
-        return('None')
+        return 0
     def go(left,right):
-        mid = (left + right) // 2
+        mid = (left+right)//2
+        if right - left == 0:
+            if xs[right] != x:
+                return 0
+            if xs[right] == x:
+                return 1
         if right - left == 1:
-            if (xs[mid] ==x):
-                return right
-            else:
+            if xs[right] != x and xs[left] != x:
+                return 0
+            if(xs[right] != x):
                 return left
+            else:
+                return right
         if left == right:
             if xs[right] < 0:
-                return 'None'
+                return 0
         if x < xs[mid]:
-            right = mid
-        if x > xs[mid]:
             left = mid
-        if x == xs[mid]:
+        if x > xs[mid]:
+            right = mid
+        if x ==xs[mid]:
             left = mid
         return go(left,right)
     return go(left,right)
+
+
+def lowest_index(xs,x):
+    left = 0
+    right = len(xs) - 1
+    if xs == []:
+        return 0
+    def go(left,right):
+        mid = (left+right)//2
+        if right - left == 0:
+            if xs[right] != x:
+                return 0
+            if xs[right] == x:
+                return 1
+        if right - left == 1:
+            if xs[right] != x and xs[left] != x:
+                return 0
+                
+            if(xs[mid] == x):
+                return left
+            else:
+                return right
+        if left == right:
+            if xs[right] < 0:
+                return 0
+        if x < xs[mid]:
+            left = mid
+        if x > xs[mid]:
+            right = mid
+        if x ==xs[mid]:
+            right = mid
+        return go(left,right)
+    return go(left,right)
+
 
 
 def argmin(f, lo, hi, epsilon=1e-3):
@@ -135,4 +180,26 @@ def argmin(f, lo, hi, epsilon=1e-3):
     >>> argmin(lambda x: (x-5)**2, -20, 0)
     -0.00016935087808430278
     '''
+
+
+    left = lo
+    right = hi
+    def stop(left,right):
+
+        m1 = ((right - left) // 3) + left 
+        m2 = ((right - left) // 2) + left
+
+        if (right - left) < epsilon:
+            return right
+
+        if f(m1) < f(m2):
+            stop(left,m2)
+      
+        if f(m2) < f(m1):
+            stop(m1,right)
+
+
+
+
+
 
