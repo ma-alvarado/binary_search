@@ -203,7 +203,7 @@ def argmin(f, lo, hi, epsilon=1e-3):
             stop(m1,right)
 
 
-    stop(left,right)
+     return stop(left,right)
 
 
 
